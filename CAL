@@ -1,0 +1,41 @@
+import streamlit as st
+
+# Title of the app
+st.title("Simple Calculator Application")
+st.subheader("Perform basic arithmetic operations: Addition, Subtraction, Multiplication, Division.")
+
+# Operation selection
+operation = st.selectbox(
+    "Select an operation:",
+    ["Addition", "Subtraction", "Multiplication", "Division"]
+)
+
+# Input fields for numbers
+num1 = st.text_input("Enter the first number:")
+num2 = st.text_input("Enter the second number:")
+
+# Button to trigger calculation
+if st.button("Calculate"):
+    try:
+        # Convert inputs to numbers
+        num1 = float(num1)
+        num2 = float(num2)
+
+        # Perform calculation based on the selected operation
+        if operation == "Addition":
+            result = num1 + num2
+            st.success(f"The result of {num1} + {num2} is: {result}")
+        elif operation == "Subtraction":
+            result = num1 - num2
+            st.success(f"The result of {num1} - {num2} is: {result}")
+        elif operation == "Multiplication":
+            result = num1 * num2
+            st.success(f"The result of {num1} * {num2} is: {result}")
+        elif operation == "Division":
+            if num2 != 0:
+                result = num1 / num2
+                st.success(f"The result of {num1} / {num2} is: {result}")
+            else:
+                st.error("Error: Division by zero is not allowed!")
+    except ValueError:
+        st.error("Invalid input! Please enter numeric values.")
